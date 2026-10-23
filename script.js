@@ -35,15 +35,9 @@ const note = "C4"; // the note played when the pointer goes down
 const synth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play several notes at once
 
 // ---------- Update ----------
-// Update the state. This is called every 100ms.
+// Update the state. This is called every 250ms.
 function update() {
-  setTimeout(update, 250); // call update() again in 100 milliseconds
-}
-
-// ---------- Use ----------
-// Use the state to make sound and move shapes. This is called every 100ms.
-function use() {
-  setTimeout(use, 100); // call use() again in 100 milliseconds
+  setTimeout(update, 250); // call update() again in 250 milliseconds
 }
 
 // ---------- Controls (Event Handlers) ----------
@@ -59,7 +53,6 @@ function pointerDown(event) {
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
   update(); // start the update loop
-  use(); // start the use loop
 
   // Example: a shape near the middle of the window. Replace it with your own.
   const example = createShape("example");
