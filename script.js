@@ -24,8 +24,6 @@
 import { createShape } from "./shape.js";
 
 // ---------- Settings ----------
-// Settings variables should contain all of the "fixed" parts of your programs
-// For example: which notes you can play, how fast things move, the tempo.
 const note = "C4"; // the note played when the pointer goes down
 
 // ---------- State ----------
@@ -39,7 +37,7 @@ const synth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play severa
 // ---------- Update ----------
 // Update the state. This is called every 100ms.
 function update() {
-  setTimeout(update, 100); // call update() again in 100 milliseconds
+  setTimeout(update, 250); // call update() again in 100 milliseconds
 }
 
 // ---------- Use ----------
