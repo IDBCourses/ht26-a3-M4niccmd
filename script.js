@@ -27,8 +27,6 @@ import { createShape } from "./shape.js";
 const note = "C4"; // the note played when the pointer goes down
 
 // ---------- State ----------
-// State variables are the parts of your program that change over time.
-// For example: where the pointer is, how fast it's moving, or whether a drone is on.
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
