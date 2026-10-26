@@ -24,9 +24,10 @@
 import { createShape } from "./shape.js";
 
 // ---------- Settings ----------
-const note = "C4"; // the note played when the pointer goes down
+const notes = [ "C", "D", "E", "F", "G", "A", "B"]; // the note played when the pointer comes across certain shapes
 
 // ---------- State ----------
+let octave = 4
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
