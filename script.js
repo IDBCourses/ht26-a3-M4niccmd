@@ -38,9 +38,9 @@ synth.detune.value = normX * 1200;
 const synth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play several notes at once
 
 // ---------- Update ----------
-// Update the state. This is called every 250ms.
+// Update the state. This is called every 750ms.
 function update() {
-  setTimeout(update, 250); // call update() again in 250 milliseconds
+  setTimeout(update, 750); // call update() again in 750 milliseconds
 }
 
 // ---------- Controls (Event Handlers) ----------
