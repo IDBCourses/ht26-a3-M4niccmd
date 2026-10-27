@@ -53,7 +53,7 @@ function pointerMove(event) {
 
   let normX = event.clientX / window.innerWidth;
 
-  speeds.push(speed);
+  speeds.push(speeds);
   setTimeout(decayOldest, 750);
   useAverage();
 
