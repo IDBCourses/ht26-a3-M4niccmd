@@ -52,6 +52,7 @@ function pointerMove(event) {
   console.log(event.clientX, event.clientY);
 
   let normX = event.clientX / window.innerWidth;
+  let normY = event.clientY / window.innerHeight;
 
   speeds.push(speeds);
   setTimeout(decayOldest, 750);
