@@ -54,6 +54,14 @@ function pointerMove(event) {
   const normX = event.clientX / window.innerWidth;
   const normY = event.clientY / window.innerHeight;
 
+  let now = Date.now();
+  let distance = Math.hypot(normX - lastX, normY - lastY);
+  let seconds = (now - lastTime) / 1000;
+  let speed = distance / seconds;
+  lastX = normX;
+  lastY = normY;
+  lastTime = now;
+
   speeds.push(speed);
   setTimeout(decayOldest, 750);
   userAverage();
