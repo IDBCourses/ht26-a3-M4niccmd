@@ -56,7 +56,7 @@ function pointerMove(event) {
 
   speeds.push(speed);
   setTimeout(decayOldest, 750);
-  average();
+  userAverage();
 
   synth.triggerAttackRelease(indexOf["C"], "8n"); // play the note for an eighth note
   }
@@ -64,11 +64,11 @@ function pointerMove(event) {
 //This function decays the oldest amount of data for the notes.
 function decayOldest() {
   speeds.shift();
-  average();
+  userAverage();
 }
 
 //This function averages the amount of pointer movements are present in the shape
-function average() {
+function userAverage() {
  if (speeds.length >= 20) {
     speeds.shift(); //Takes out the oldest speed from the average
   }
