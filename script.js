@@ -29,6 +29,7 @@ const notes = [ "C", "D", "E", "F", "G", "A", "B"]; // the note played when the 
 // ---------- State ----------
 let octave = 4;
 let normX = event.clientX / window.innerWidth;
+let speeds = [];
 
 synth.detune.value = normX * 1200;
 
@@ -48,11 +49,21 @@ function pointerDown(event) {
   Tone.start(); // browsers only allow sound after the player has pressed something
 
   console.log("Pointer down at", event.clientX, event.clientY);
-  synth.triggerAttackRelease(note, "8n"); // play the note for an eighth note
+  synth.triggerAttack(indexOf["C"], "8n"); // play the note for an eighth note
 }
 
 function pointerMove(event) {
   console.log(event.clientX, event.clientY);
+
+   speeds.push(speed);
+  if (speeds.length >= 20) {
+
+  let total = 0;
+  for (let i = 0; i < speed.length; i++);
+    total = total + speeds[i];
+  }
+  let average = total / 10;
+  synth.detune.value = average * 300;
 
 }
 
