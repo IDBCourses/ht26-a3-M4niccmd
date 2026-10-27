@@ -63,11 +63,11 @@ function pointerMove(event) {
 //This function decays the oldest amount of data for the notes.
 function decayOldest() {
   speeds.shift();
-  useAverage();
+  average();
 }
 
 //This function averages the amount of pointer movements are present in the shape
-function useAverage() {
+function average() {
  if (speeds.length >= 20) {
     speeds.shift(); //Takes out the oldest speed from the average
   }
@@ -76,7 +76,8 @@ function useAverage() {
   for (let i = 0; i < speeds.length; i++) {
     total = total + speeds[i];
   }
-   let average = 0
+
+  let average = 0
   if (speeds.length > 0){
      average = total / speeds.length;
   }
