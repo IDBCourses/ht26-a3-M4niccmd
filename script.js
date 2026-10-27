@@ -80,8 +80,9 @@ function average() {
   let average = 0
   if (speeds.length > 0){
      average = total / speeds.length;
+      synth.detune.value = average * 300;
   }
-  synth.detune.value = average * 300;
+
 }
 
 // ---------- Setup ----------
