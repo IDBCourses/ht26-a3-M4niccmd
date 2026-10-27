@@ -55,7 +55,7 @@ function pointerMove(event) {
 
   speeds.push(speeds);
   setTimeout(decayOldest, 750);
-  useAverage();
+  average();
 
   synth.triggerAttack(indexOf["C"], "8n"); // play the note for an eighth note
   }
