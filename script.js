@@ -29,6 +29,8 @@ const notes = [ "C", "D", "E", "F", "G", "A", "B"]; // the note played when the 
 // ---------- State ----------
 let octave = 4;
 let speeds = [];
+let lastX = null;
+let lastY = null;
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
