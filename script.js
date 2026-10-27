@@ -55,17 +55,28 @@ function pointerDown(event) {
 function pointerMove(event) {
   console.log(event.clientX, event.clientY);
 
-   speeds.push(speed);
+  speeds.push(speed);
+  setTimeout(decayOldest, 750);
+  useAverage();
+  
   if (speeds.length >= 20) {
+    speeds.shift(); //Takes out the oldest speed from the average
+  }
 
   let total = 0;
-  for (let i = 0; i < speed.length; i++);
+  for (let i = 0; i < speeds.length; i++) {
     total = total + speeds[i];
   }
-  let average = total / 10;
-  synth.detune.value = average * 300;
+    let average = total / speeds.length;
+    synth.detune.value = average * 300;
+  }
 
+//This function decays the oldest amount of data for the notes.
+function decayOldest() {
+  speeds.shift();
+  useAverage();
 }
+
 
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
