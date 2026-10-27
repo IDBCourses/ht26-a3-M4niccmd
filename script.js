@@ -58,7 +58,7 @@ function pointerMove(event) {
   setTimeout(decayOldest, 750);
   userAverage();
 
-  synth.triggerAttackRelease(indexOf["C"], "8n"); // play the note for an eighth note
+  synth.triggerAttackRelease(notes[0] + octave, "8n"); // play the note for an eighth note
   }
 
 //This function decays the oldest amount of data for the notes.
