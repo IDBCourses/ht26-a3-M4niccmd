@@ -58,17 +58,7 @@ function pointerMove(event) {
   speeds.push(speed);
   setTimeout(decayOldest, 750);
   useAverage();
-  
-  if (speeds.length >= 20) {
-    speeds.shift(); //Takes out the oldest speed from the average
-  }
 
-  let total = 0;
-  for (let i = 0; i < speeds.length; i++) {
-    total = total + speeds[i];
-  }
-    let average = total / speeds.length;
-    synth.detune.value = average * 300;
   }
 
 //This function decays the oldest amount of data for the notes.
@@ -77,6 +67,22 @@ function decayOldest() {
   useAverage();
 }
 
+//This function averages the amount of pointer movements are present in the shape
+function useAverage() {
+ if (speeds.length >= 20) {
+    speeds.shift(); //Takes out the oldest speed from the average
+  }
+
+  let total = 0;
+  for (let i = 0; i < speeds.length; i++) {
+    total = total + speeds[i];
+  }
+   let average = 0
+  if (speeds.length > 0){
+     average = total / speeds.length;
+  }
+  synth.detune.value = average * 300;
+}
 
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
@@ -92,4 +98,4 @@ function setup() {
   window.addEventListener("pointermove", pointerMove);
 }
 
-setup(); // Always remember to call setup()!
+setup();
