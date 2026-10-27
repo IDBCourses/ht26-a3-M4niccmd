@@ -25,11 +25,12 @@ import { createShape } from "./shape.js";
 
 // ---------- Settings ----------
 const notes = [ "C", "D", "E", "F", "G", "A", "B"]; // the note played when the pointer comes across certain shapes
-const synth.detune.value = normX * 1200;
 
 // ---------- State ----------
 let octave = 4;
 let normX = event.clientX / window.innerWidth;
+
+synth.detune.value = normX * 1200;
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
