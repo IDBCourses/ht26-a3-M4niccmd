@@ -117,7 +117,7 @@ function setup() {
 
   // Put your event listener code here
   window.addEventListener("pointerdown", pointerDown);
-  window.addEventListener("pointermove", pointerMove);
+  example.element.addEventListener("pointermove", pointerMove);
 }
 
 setup();
