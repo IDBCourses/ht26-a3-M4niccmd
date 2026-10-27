@@ -30,8 +30,6 @@ const notes = [ "C", "D", "E", "F", "G", "A", "B"]; // the note played when the 
 let octave = 4;
 let speeds = [];
 
-synth.detune.value = normX * 1200;
-
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
 const synth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play several notes at once
