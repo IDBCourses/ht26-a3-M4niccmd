@@ -72,7 +72,7 @@ function useAverage() {
     speeds.shift(); //Takes out the oldest speed from the average
   }
 
-  let total = 0;
+ let total = 0;
   for (let i = 0; i < speeds.length; i++) {
     total = total + speeds[i];
   }
