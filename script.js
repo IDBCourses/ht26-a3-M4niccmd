@@ -57,7 +57,7 @@ function pointerMove(event) {
   const normY = event.clientY / window.innerHeight;
 
   let now = Date.now();
-
+  let lastTime = now;
   if (lastX !== null && lastY !== null && lastTime !== null) {
     let distance = Math.hypot(normX - lastX, normY - lastY);
     let seconds = (now - lastTime) / 1000;
@@ -73,9 +73,8 @@ function pointerMove(event) {
   //This section remembers positions X and Y from the previous pointer movement, and remembers the time it takes from the previous movement to the new movement.
   lastX = normX;
   lastY = normY;
-  lastTime = now;
 
-  speeds.push(speed);
+  speeds.push(speeds);
   setTimeout(decayOldest, 750);
   userAverage();
 
