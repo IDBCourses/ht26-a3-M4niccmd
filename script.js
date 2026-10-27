@@ -82,8 +82,6 @@ function average() {
      average = total / speeds.length;
   }
   synth.detune.value = average * 300;
-
-  console.log("Your average pointer speed is " + useAverage);
 }
 
 // ---------- Setup ----------
