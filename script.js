@@ -24,7 +24,7 @@
 import { createShape } from "./shape.js";
 
 // ---------- Settings ----------
-const notes = [ "C", "D", "E", "F", "G", "A", "B"]; // the note played when the pointer comes across certain shapes
+const notes = ["C", "D", "E", "F", "G", "A", "B"]; // the note played when the pointer comes across certain shapes
 
 // ---------- State ----------
 let octave = 4;
@@ -79,7 +79,7 @@ function pointerMove(event) {
   userAverage();
 
   synth.triggerAttackRelease(notes[0] + octave, "8n"); // play the note for an eighth note
-  }
+}
 
 //This function decays the oldest amount of data for the notes.
 function decayOldest() {
@@ -89,21 +89,20 @@ function decayOldest() {
 
 //This function averages the amount of pointer movements are present in the shape
 function userAverage() {
- if (speeds.length >= 20) {
+  if (speeds.length >= 20) {
     speeds.shift(); //Takes out the oldest speed from the average
   }
 
- let total = 0;
+  let total = 0;
   for (let i = 0; i < speeds.length; i++) {
     total = total + speeds[i];
   }
 
-  let average = 0
-  if (speeds.length > 0){
-     average = total / speeds.length;
-      synth.detune.value = average * 300;
+  let average = 0;
+  if (speeds.length > 0) {
+    average = total / speeds.length;
+    synth.detune.value = average * 300;
   }
-
 }
 
 // ---------- Setup ----------
