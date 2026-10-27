@@ -51,14 +51,14 @@ function pointerDown(event) {
 function pointerMove(event) {
   console.log(event.clientX, event.clientY);
 
-  let normX = event.clientX / window.innerWidth;
-  let normY = event.clientY / window.innerHeight;
+  const normX = event.clientX / window.innerWidth;
+  const normY = event.clientY / window.innerHeight;
 
-  speeds.push(speeds);
+  speeds.push(speed);
   setTimeout(decayOldest, 750);
   average();
 
-  synth.triggerAttack(indexOf["C"], "8n"); // play the note for an eighth note
+  synth.triggerAttackRelease(indexOf["C"], "8n"); // play the note for an eighth note
   }
 
 //This function decays the oldest amount of data for the notes.
