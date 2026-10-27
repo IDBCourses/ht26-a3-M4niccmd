@@ -37,7 +37,7 @@ export class Shape {
   }
 
   /** Set the colour using HSL(A): h 0..360, s and l in percent, a 0..1. */
-  setColour(h, s = 68, l = 20, a = 1) {
+  setColour(h, s = 100, l = 50, a = 1) {
     this.hue = h;
     this.saturation = s;
     this.lightness = l;
