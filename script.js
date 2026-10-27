@@ -25,13 +25,15 @@ import { createShape } from "./shape.js";
 
 // ---------- Settings ----------
 const notes = [ "C", "D", "E", "F", "G", "A", "B"]; // the note played when the pointer comes across certain shapes
+const synth.detune.value = normX * 1200;
 
 // ---------- State ----------
-let octave = 4
+let octave = 4;
+let normX = event.clientX / window.innerWidth;
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
-const synth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play several notes at once
+const polysynth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play several notes at once
 
 // ---------- Update ----------
 // Update the state. This is called every 250ms.
@@ -48,6 +50,11 @@ function pointerDown(event) {
   synth.triggerAttackRelease(note, "8n"); // play the note for an eighth note
 }
 
+function pointerMove(event) {
+  console.log(event.clientX, event.clientY);
+
+}
+
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
@@ -59,6 +66,7 @@ function setup() {
 
   // Put your event listener code here
   window.addEventListener("pointerdown", pointerDown);
+  window.addEventListener("pointermove", pointerMove);
 }
 
 setup(); // Always remember to call setup()!
