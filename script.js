@@ -39,6 +39,7 @@ const synth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play severa
 // ---------- Update ----------
 // Update the state. This is called every 750ms.
 function update() {
+
   setTimeout(update, 750); // call update() again in 750 milliseconds
 }
 
@@ -67,7 +68,6 @@ function pointerMove(event) {
 
       speeds.push(speed);
       setTimeout(decayOldest, 750);
-      userAverage();
     }
   }
   //This section remembers positions X and Y from the previous pointer movement, and remembers the time it takes from the previous movement to the new movement.
@@ -76,8 +76,6 @@ function pointerMove(event) {
 
   speeds.push(speeds);
   setTimeout(decayOldest, 750);
-  userAverage();
-
   synth.triggerAttackRelease(notes[0] + octave, "8n"); // play the note for an eighth note
 }
 
@@ -99,11 +97,14 @@ function userAverage() {
   }
 
   let average = 0;
+  let detune = average * 300
   if (speeds.length > 0) {
     average = total / speeds.length;
-    synth.detune.value = average * 300;
+    synth.detune.value = detune;
   }
 }
+
+console.log(synth.detune);
 
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
