@@ -27,7 +27,6 @@ import { createShape } from "./shape.js";
 const notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4"]; // the note played when the pointer comes across certain shapes
 
 // ---------- State ----------
-let speeds = [];
 let lastX = null;
 let lastY = null;
 let soundPlay = false;
