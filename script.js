@@ -49,13 +49,18 @@ function update() {
 // Runs every time the pointer goes down: a click, a tap or a pen touch.
 
 function pointerEnter(event) {
+
   synth.triggerAttack(notes[0] + octave);
   shape1.setColour(80, 20, 50);
+
 }
 
 function pointerLeave(event) {
+
   synth.triggerRelease(notes[0] + octave);
   shape1.setColour(50, 80, 20);
+  
+
 }
 
 console.log(synth.detune);
