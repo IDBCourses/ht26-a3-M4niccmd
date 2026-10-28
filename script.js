@@ -24,15 +24,13 @@
 import { createShape } from "./shape.js";
 
 // ---------- Settings ----------
-const notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4"]; // the note played when the pointer comes across certain shapes
+const notes = ["C", "D", "E", "F", "G", "A", "B"]; // the note played when the pointer comes across certain shapes
   // Shape1: Test shape for experimentation
 const shape1 = createShape("First Shape");
 shape1.setPosition(0.5, 0.67);
 
 // ---------- State ----------
-let lastX = null;
-let lastY = null;
-let soundPlay = false;
+let octave = 4
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
@@ -47,26 +45,16 @@ function update() {
 
 // ---------- Controls (Event Handlers) ----------
 // Runs every time the pointer goes down: a click, a tap or a pen touch.
-function pointerDown(event) {
-  Tone.start(); // browsers only allow sound after the player has pressed something
 
-  console.log("Pointer down at", event.clientX, event.clientY);
+function pointerEnter(event){
+  Tone.start();
+
+  synth.triggerAttack(notes[0] + octave);
+  shape1.setColour(100,20,60);
+
 }
 
-function pointerMove(event) {
-  Tone.start();
-  console.log(event.clientX, event.clientY);
-
-  const normX = event.clientX / window.innerWidth;
-  const normY = event.clientY / window.innerHeight;
-
-  if (soundPlay === false){
-    synth.triggerAttack(notes[0]); //play the note C4
-    soundPlay === true;
-  } else (soundPlay === true);{
-    synth.triggerRelease(notes[0]);
-    soundPlay === false;
-  }
+function pointerLeave(event){
 
 }
 
@@ -79,11 +67,11 @@ function setup() {
   update(); // start the update loop
   shape1.setSize(145);
   shape1.setColour(50,80,20);
-  
+
   // window.addEventListener for pointerDown active for when pointer is clicking.
   //shape1.element.addEventListener for when pointer moves into element
-  window.addEventListener("pointerdown", pointerDown);
-  shape1.element.addEventListener("pointermove", pointerMove);
+  shape1.element.addEventListener("pointerenter", pointerEnter);
+  shape1.element.addEventListener("pointerleave", pointerLeave);
 }
 
 setup();
