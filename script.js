@@ -25,12 +25,12 @@ import { createShape } from "./shape.js";
 
 // ---------- Settings ----------
 const notes = ["C", "D", "E", "F", "G", "A", "B"]; // the note played when the pointer comes across certain shapes
-  // Shape1: Test shape for experimentation
+  // Shape1: first shape in the instrument
 const shape1 = createShape("First Shape");
 shape1.setPosition(0.5, 0.67);
 
 // ---------- State ----------
-let octave = 4
+let octave = 4 //Sets octave to 4
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
