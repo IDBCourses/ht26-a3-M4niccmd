@@ -49,18 +49,21 @@ function update() {
 // Runs every time the pointer goes down: a click, a tap or a pen touch.
 
 function pointerEnter(event) {
-
   synth.triggerAttack(notes[0] + octave);
   shape1.setColour(80, 20, 50);
-
 }
 
 function pointerLeave(event) {
-
   synth.triggerRelease(notes[0] + octave);
   shape1.setColour(50, 80, 20);
-  
 
+  synth.triggerRelease(notes[1] + octave);
+  shape2.setColour(80, 80, 45);
+}
+
+function pointerEnter2(event){
+  synth.triggerAttack(notes[1] + octave);
+  shape2.setColour(20, 80, 100);
 }
 
 console.log(synth.detune);
@@ -77,7 +80,7 @@ function setup() {
   //shape1.element.addEventListener for when pointer moves into element
   shape1.element.addEventListener("pointerenter", pointerEnter);
   shape1.element.addEventListener("pointerleave", pointerLeave);
-  shape2.element.addEventListener("pointerenter", pointerEnter);
+  shape2.element.addEventListener("pointerenter", pointerEnter2);
   shape2.element.addEventListener("pointerleave", pointerLeave);
 }
 
