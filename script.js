@@ -25,9 +25,11 @@ import { createShape } from "./shape.js";
 
 // ---------- Settings ----------
 const notes = ["C", "D", "E", "F", "G", "A", "B"]; // the note played when the pointer comes across certain shapes
-// Shape1: first shape in the instrument
+// Shape1: defined as "circle", the first shape in the instrument
 const shape1 = createShape("Circle");
 shape1.setPosition(0.5, 0.67);
+
+//
 const shape2 = createShape("Square");
 shape2.setPosition(0.3, 0.4);
 shape2.setRoundedness(0.2);
@@ -53,6 +55,11 @@ function pointerEnter(event) {
   shape1.setColour(80, 20, 50);
 }
 
+function pointerEnter2(event){
+  synth.triggerAttack(notes[1] + octave);
+  shape2.setColour(20, 80, 100);
+}
+
 function pointerLeave(event) {
   synth.triggerRelease(notes[0] + octave);
   shape1.setColour(50, 80, 20);
@@ -61,10 +68,7 @@ function pointerLeave(event) {
   shape2.setColour(80, 80, 45);
 }
 
-function pointerEnter2(event){
-  synth.triggerAttack(notes[1] + octave);
-  shape2.setColour(20, 80, 100);
-}
+
 
 console.log(synth.detune);
 
