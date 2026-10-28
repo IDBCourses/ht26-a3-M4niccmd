@@ -25,6 +25,9 @@ import { createShape } from "./shape.js";
 
 // ---------- Settings ----------
 const notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4"]; // the note played when the pointer comes across certain shapes
+  // Shape1: Test shape for experimentation
+const shape1 = createShape("First Shape");
+shape1.setPosition(0.5, 0.67);
 
 // ---------- State ----------
 let lastX = null;
@@ -74,11 +77,9 @@ console.log(synth.detune);
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
   update(); // start the update loop
-
-  // Shape1: Test shape for experimentation
-  const shape1 = createShape("First Shape");
-  shape1.setPosition(0.5, 0.67);
-
+  shape1.setSize(145);
+  shape1.setColour(50,80,20);
+  
   // window.addEventListener for pointerDown active for when pointer is clicking.
   //shape1.element.addEventListener for when pointer moves into element
   window.addEventListener("pointerdown", pointerDown);
