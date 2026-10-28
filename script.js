@@ -68,9 +68,9 @@ function pointerLeave(event) {
   shape2.setColour(80, 80, 45);
 }
 
-
-
-console.log(synth.detune);
+function pointerMove(event){
+  
+}
 
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
@@ -86,6 +86,7 @@ function setup() {
   shape1.element.addEventListener("pointerleave", pointerLeave);
   shape2.element.addEventListener("pointerenter", pointerEnter2);
   shape2.element.addEventListener("pointerleave", pointerLeave);
+  window.addEventListener("pointermove", pointerMove);
 }
 
 setup();
