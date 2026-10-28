@@ -31,6 +31,7 @@ let octave = 4;
 let speeds = [];
 let lastX = null;
 let lastY = null;
+let soundPlay = false;
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
@@ -52,6 +53,7 @@ function pointerDown(event) {
 }
 
 function pointerMove(event) {
+  Tone.start();
   console.log(event.clientX, event.clientY);
 
   const normX = event.clientX / window.innerWidth;
@@ -74,35 +76,15 @@ function pointerMove(event) {
   lastX = normX;
   lastY = normY;
 
+  if (soundPlay === false){
+    synth.triggerAttackRelease(notes[0] + octave, "8n"); // play the note for an eighth note
+    soundPlay === true;
+  }
+
   speeds.push(speeds);
   setTimeout(decayOldest, 750);
-  synth.triggerAttackRelease(notes[0] + octave, "8n"); // play the note for an eighth note
 }
 
-//This function decays the oldest amount of data for the notes.
-function decayOldest() {
-  speeds.shift();
-  userAverage();
-}
-
-//This function averages the amount of pointer movements are present in the shape
-function userAverage() {
-  if (speeds.length >= 20) {
-    speeds.shift(); //Takes out the oldest speed from the average
-  }
-
-  let total = 0;
-  for (let i = 0; i < speeds.length; i++) {
-    total = total + speeds[i];
-  }
-
-  let average = 0;
-  let detune = average * 300
-  if (speeds.length > 0) {
-    average = total / speeds.length;
-    synth.detune.value = detune;
-  }
-}
 
 console.log(synth.detune);
 
@@ -111,13 +93,14 @@ console.log(synth.detune);
 function setup() {
   update(); // start the update loop
 
-  // Example: a shape near the middle of the window. Replace it with your own.
-  const example = createShape("example");
-  example.setPosition(0.5, 0.5);
+  // Shape1: Test shape for experimentation
+  const shape1 = createShape("First Shape");
+  shape1.setPosition(1, 0.3);
 
-  // Put your event listener code here
+  // window.addEventListener for pointerDown active for when pointer is clicking.
+  //shape1.element.addEventListener for when pointer moves into element
   window.addEventListener("pointerdown", pointerDown);
-  example.element.addEventListener("pointermove", pointerMove);
+  shape1.element.addEventListener("pointermove", pointerMove);
 }
 
 setup();
