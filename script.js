@@ -57,30 +57,14 @@ function pointerMove(event) {
   const normX = event.clientX / window.innerWidth;
   const normY = event.clientY / window.innerHeight;
 
-  let now = Date.now();
-  let lastTime = now;
-  if (lastX !== null && lastY !== null && lastTime !== null) {
-    let distance = Math.hypot(normX - lastX, normY - lastY);
-    let seconds = (now - lastTime) / 1000;
-
-    if (seconds > 0) {
-      let speed = distance / seconds;
-
-      speeds.push(speed);
-      setTimeout(decayOldest, 750);
-    }
-  }
-  //This section remembers positions X and Y from the previous pointer movement, and remembers the time it takes from the previous movement to the new movement.
-  lastX = normX;
-  lastY = normY;
-
   if (soundPlay === false){
-    synth.triggerAttackRelease(notes[0], "4n"); //play a sixteenth of the note
+    synth.triggerAttack(notes[0]); //play the note C4
     soundPlay === true;
+  } else (soundPlay === true);{
+    synth.triggerRelease(notes[0]);
+    soundPlay === false;
   }
 
-  speeds.push(speeds);
-  setTimeout(decayOldest, 750);
 }
 
 
