@@ -26,11 +26,13 @@ import { createShape } from "./shape.js";
 // ---------- Settings ----------
 const notes = ["C", "D", "E", "F", "G", "A", "B"]; // the note played when the pointer comes across certain shapes
   // Shape1: first shape in the instrument
-const shape1 = createShape("First Shape");
+const shape1 = createShape("Circle");
 shape1.setPosition(0.5, 0.67);
+const shape2 = createShape("Square");
+shape2.setPosition(0.3, 0.4);
 
 // ---------- State ----------
-let octave = 4 //Sets octave to 4
+let octave = 4; //sets octave to 4
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
@@ -47,12 +49,12 @@ function update() {
 // Runs every time the pointer goes down: a click, a tap or a pen touch.
 
 function pointerEnter(event){
-  synth.triggerAttack(notes[0] + octave);
+  synth.triggerAttack(notes[0]+ octave);
   shape1.setColour(100,20,60);
 }
 
 function pointerLeave(event){
-  synth.triggerRelease(notes[0] + octave);
+  synth.triggerRelease(notes[0]+ octave);
   shape1.setColour(50, 80, 20);
 }
 
@@ -65,7 +67,8 @@ function setup() {
   update(); // start the update loop
   shape1.setSize(145);
   shape1.setColour(50,80,20);
-
+  shape2.setSize(145);
+  shape2.setColour(80,80,45);
   // window.addEventListener for pointerDown active for when pointer is clicking.
   //shape1.element.addEventListener for when pointer moves into element
   shape1.element.addEventListener("pointerenter", pointerEnter);
