@@ -36,6 +36,11 @@ shape2.setRoundedness(0.2);
 
 // ---------- State ----------
 let octave = 4; //sets octave to 4
+let within = false; //whether the pointer is inside the element or not
+let lastX = 0;
+let lastY = 0;
+let lastTime = 0;
+let speeds = [];
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
@@ -69,8 +74,53 @@ function pointerLeave(event) {
 }
 
 function pointerMove(event){
-  
+  if (!within){
+    return;
+  }
+
+  let normX = event.clientX / window.innerWidth;
+  let normY = event.clientY / window.innerHeight;
+  let now = Date.now();
+  let distance = Math.hypot(normX - lastX, normY - lastY);
+  let seconds = (now - lastTime) / 1000;
+
+  if (seconds === 0){
+    return;
+  }
+
+  let speed = distance / seconds;
+  lastX = normX;
+  lastY = normY;
+  lastTime = now;
+
+  speeds.push(speed);
+  setTimeout(decayOldest, 750);
+  userAverage;
 }
+
+function decayOldest() {
+  speeds.shift();
+  userAverage;
+}
+
+function userAverage() {
+  let total = 0;
+  for (let i = 0; i < speeds.length; i++){
+    total = total + speeds[i];
+  }
+
+  let average = 0;
+  if (speeds.length > 0){
+    average = total / speeds.length;
+  }
+
+  let volume = -15 + average * 10;
+  if (volume > 0){
+    volume = 0;
+  }
+  synth.volume.value = volume;
+}
+
 
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
