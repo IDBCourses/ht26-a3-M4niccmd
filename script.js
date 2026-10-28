@@ -24,10 +24,9 @@
 import { createShape } from "./shape.js";
 
 // ---------- Settings ----------
-const notes = ["C", "D", "E", "F", "G", "A", "B"]; // the note played when the pointer comes across certain shapes
+const notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4"]; // the note played when the pointer comes across certain shapes
 
 // ---------- State ----------
-let octave = 4;
 let speeds = [];
 let lastX = null;
 let lastY = null;
@@ -77,7 +76,7 @@ function pointerMove(event) {
   lastY = normY;
 
   if (soundPlay === false){
-    synth.triggerAttackRelease(notes[0] + octave, "8n"); // play the note for an eighth note
+    synth.triggerAttackRelease(notes[0], "8n"); // play the note for an eighth note
     soundPlay === true;
   }
 
@@ -95,7 +94,7 @@ function setup() {
 
   // Shape1: Test shape for experimentation
   const shape1 = createShape("First Shape");
-  shape1.setPosition(1, 0.3);
+  shape1.setPosition(0.5, 0.67);
 
   // window.addEventListener for pointerDown active for when pointer is clicking.
   //shape1.element.addEventListener for when pointer moves into element
