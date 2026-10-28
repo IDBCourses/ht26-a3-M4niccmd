@@ -75,7 +75,7 @@ function pointerMove(event) {
   lastY = normY;
 
   if (soundPlay === false){
-    synth.triggerAttackRelease(notes[0], "8n"); // play the note for an eighth note
+    synth.triggerAttackRelease(notes[0], "4n"); //play a sixteenth of the note
     soundPlay === true;
   }
 
