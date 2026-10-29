@@ -49,6 +49,16 @@ const shape5 = createShape("Square");
 shape5.setPosition(0.1, 0.5);
 shape5.setRoundedness(0.13);
 
+//A sixth shape element on the browser.
+const shape6 = createShape("Square");
+shape6.setPosition(0.15, 0.35);
+shape6.setRoundedness(0.13);
+
+//A seventh shape element on the browser.
+const shape7 = createShape("Square");
+shape7.setPosition(0.12, 0.25);
+shape7.setRoundedness(0.13);
+
 // ---------- State ----------
 let octave = 4; //sets octave to 4
 let within = false; //whether the pointer is inside the element or not
@@ -100,6 +110,18 @@ function pointerEnter5(event){
   shape5.setColour(20, 80, 100);
 }
 
+function pointerEnter6(event){
+  within = true;
+  synth.triggerAttack(notes[5] + octave);
+  shape6.setColour(20, 80, 100);
+}
+
+function pointerEnter7(event){
+  within = true;
+  synth.triggerAttack(notes[6] + octave);
+  shape7.setColour(20, 80, 100);
+}
+
 function pointerLeave(event) {
   within = false;
 
@@ -117,6 +139,12 @@ function pointerLeave(event) {
 
   synth.triggerRelease(notes[4] + octave);
   shape5.setColour(80, 80, 45);
+
+  synth.triggerRelease(notes[5] + octave);
+  shape6.setColour(80, 80, 45);
+
+  synth.triggerRelease(notes[6] + octave);
+  shape7.setColour(80, 80, 45);
 }
 
 function pointerMove(event){
@@ -195,6 +223,10 @@ function setup() {
   shape4.element.addEventListener("pointerleave", pointerLeave);
   shape5.element.addEventListener("pointerenter", pointerEnter5);
   shape5.element.addEventListener("pointerleave", pointerLeave);
+  shape6.element.addEventListener("pointerenter", pointerEnter6);
+  shape6.element.addEventListener("pointerleave", pointerLeave);
+  shape7.element.addEventListener("pointerenter", pointerEnter7);
+  shape7.element.addEventListener("pointerleave", pointerLeave);
   window.addEventListener("pointermove", pointerMove);
 }
 
