@@ -29,10 +29,25 @@ const notes = ["C", "D", "E", "F", "G", "A", "B"]; // the note played when the p
 const shape1 = createShape("Circle");
 shape1.setPosition(0.5, 0.67);
 
-//
+//A second shape element on the browser.
 const shape2 = createShape("Square");
 shape2.setPosition(0.3, 0.4);
-shape2.setRoundedness(0.2);
+shape2.setRoundedness(0.13);
+
+//A third shape element on the browser.
+const shape3 = createShape("Square");
+shape3.setPosition(0.4, 0.4);
+shape3.setRoundedness(0.13);
+
+//A fourth shape element on the browser.
+const shape4 = createShape("Square");
+shape4.setPosition(0.2, 0.4);
+shape4.setRoundedness(0.13);
+
+//A fifth shape element on the browser.
+const shape5 = createShape("Square");
+shape5.setPosition(0.1, 0.5);
+shape5.setRoundedness(0.13);
 
 // ---------- State ----------
 let octave = 4; //sets octave to 4
@@ -56,6 +71,7 @@ function update() {
 // Runs every time the pointer goes down: a click, a tap or a pen touch.
 
 function pointerEnter(event) {
+  within = true;
   synth.triggerAttack(notes[0] + octave);
   shape1.setColour(80, 20, 50);
 }
@@ -65,7 +81,14 @@ function pointerEnter2(event){
   shape2.setColour(20, 80, 100);
 }
 
+function pointerEnter3(event){
+  synth.triggerAttack(notes[2] + octave);
+  shape3.setColour(20, 80, 100);
+}
+
 function pointerLeave(event) {
+  within = false;
+
   synth.triggerRelease(notes[0] + octave);
   shape1.setColour(50, 80, 20);
 
@@ -126,16 +149,21 @@ function userAverage() {
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
   update(); // start the update loop
-  shape1.setSize(145);
+  shape1.setSize(120);
   shape1.setColour(50, 80, 20);
-  shape2.setSize(145);
+  shape2.setSize(120);
   shape2.setColour(80, 80, 45);
+  shape3.setSize(120);
+  shape3.setColour(80, 80, 45);
+
   // window.addEventListener for pointerDown active for when pointer is clicking.
   //shape1.element.addEventListener for when pointer moves into element
   shape1.element.addEventListener("pointerenter", pointerEnter);
   shape1.element.addEventListener("pointerleave", pointerLeave);
   shape2.element.addEventListener("pointerenter", pointerEnter2);
   shape2.element.addEventListener("pointerleave", pointerLeave);
+  shape3.element.addEventListener("pointerenter", pointerEnter3);
+  shape3.element.addEventListener("pointerleave", pointerLeave);
   window.addEventListener("pointermove", pointerMove);
 }
 
