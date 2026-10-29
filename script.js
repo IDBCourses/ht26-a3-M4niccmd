@@ -80,6 +80,13 @@ function update() {
 // ---------- Controls (Event Handlers) ----------
 // Runs every time the pointer goes down: a click, a tap or a pen touch.
 
+//Runs the Tune.start function when pointer enters the browser.
+function startAudio() {
+  Tone.start();
+}
+
+//Every subsequent function under this comment is intended for each object to have a pointerEnter function so that they do not appear and disappear at the same time.
+//Each element has their own pointerEnter event to make notes different.
 function pointerEnter(event) {
   within = true;
   synth.triggerAttack(notes[0] + octave);
@@ -122,6 +129,7 @@ function pointerEnter7(event){
   shape7.setColour(20, 80, 100);
 }
 
+//pointerLeave is a singular function as it does the same thing for every other element -- Purely my hypothesis.
 function pointerLeave(event) {
   within = false;
 
@@ -147,6 +155,8 @@ function pointerLeave(event) {
   shape7.setColour(80, 80, 45);
 }
 
+//pointerMove to userAverage in these functions are intended for the effect to be applied across all elements.
+//Pointer enters the element slowly will make a low tone, while quick movements make louder tones.
 function pointerMove(event){
   if (!within){
     return;
@@ -233,9 +243,7 @@ function setup() {
   shape7.element.addEventListener("pointerleave", pointerLeave);
   window.addEventListener("pointermove", pointerMove);
 
-  window.addEventListener("pointerdown", () => {
-    Tone.start();
-  });
+  window.addEventListener("pointerdown", startTone);
 }
 
 setup();
