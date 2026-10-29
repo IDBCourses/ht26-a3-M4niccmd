@@ -81,7 +81,7 @@ function update() {
 // Runs every time the pointer goes down: a click, a tap or a pen touch.
 
 //Runs the Tune.start function when pointer enters the browser.
-function startAudio() {
+function startTone() {
   Tone.start();
 }
 
@@ -225,8 +225,8 @@ function setup() {
   shape7.setSize(120);
   shape7.setColour(80, 80, 45);
 
-  // window.addEventListener for pointerDown active for when pointer is clicking.
-  //shape1.element.addEventListener for when pointer moves into element
+  //shape elements were added so that each shape has a separate enter state to play individual notes.
+  //addEventListener pointerdown allows for audio to play once the browser is clicked.
   shape1.element.addEventListener("pointerenter", pointerEnter);
   shape1.element.addEventListener("pointerleave", pointerLeave);
   shape2.element.addEventListener("pointerenter", pointerEnter2);
