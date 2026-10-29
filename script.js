@@ -77,13 +77,27 @@ function pointerEnter(event) {
 }
 
 function pointerEnter2(event){
+  within = true;
   synth.triggerAttack(notes[1] + octave);
   shape2.setColour(20, 80, 100);
 }
 
 function pointerEnter3(event){
+  within = true;
   synth.triggerAttack(notes[2] + octave);
   shape3.setColour(20, 80, 100);
+}
+
+function pointerEnter4(event){
+  within = true;
+  synth.triggerAttack(notes[3] + octave);
+  shape4.setColour(20, 80, 100);
+}
+
+function pointerEnter5(event){
+  within = true;
+  synth.triggerAttack(notes[4] + octave);
+  shape5.setColour(20, 80, 100);
 }
 
 function pointerLeave(event) {
@@ -94,6 +108,15 @@ function pointerLeave(event) {
 
   synth.triggerRelease(notes[1] + octave);
   shape2.setColour(80, 80, 45);
+
+  synth.triggerRelease(notes[2] + octave);
+  shape3.setColour(80, 80, 45);
+
+  synth.triggerRelease(notes[3] + octave);
+  shape4.setColour(80, 80, 45);
+
+  synth.triggerRelease(notes[4] + octave);
+  shape5.setColour(80, 80, 45);
 }
 
 function pointerMove(event){
@@ -155,6 +178,10 @@ function setup() {
   shape2.setColour(80, 80, 45);
   shape3.setSize(120);
   shape3.setColour(80, 80, 45);
+  shape4.setSize(120);
+  shape4.setColour(80, 80, 45);
+  shape5.setSize(120);
+  shape5.setColour(80, 80, 45);
 
   // window.addEventListener for pointerDown active for when pointer is clicking.
   //shape1.element.addEventListener for when pointer moves into element
@@ -164,6 +191,10 @@ function setup() {
   shape2.element.addEventListener("pointerleave", pointerLeave);
   shape3.element.addEventListener("pointerenter", pointerEnter3);
   shape3.element.addEventListener("pointerleave", pointerLeave);
+  shape4.element.addEventListener("pointerenter", pointerEnter4);
+  shape4.element.addEventListener("pointerleave", pointerLeave);
+  shape5.element.addEventListener("pointerenter", pointerEnter5);
+  shape5.element.addEventListener("pointerleave", pointerLeave);
   window.addEventListener("pointermove", pointerMove);
 }
 
