@@ -169,12 +169,12 @@ function pointerMove(event){
 
   speeds.push(speed);
   setTimeout(decayOldest, 750);
-  userAverage;
+  userAverage();
 }
 
 function decayOldest() {
   speeds.shift();
-  userAverage;
+  userAverage();
 }
 
 function userAverage() {
@@ -210,6 +210,10 @@ function setup() {
   shape4.setColour(80, 80, 45);
   shape5.setSize(120);
   shape5.setColour(80, 80, 45);
+  shape6.setSize(120);
+  shape6.setColour(80, 80, 45);
+  shape7.setSize(120);
+  shape7.setColour(80, 80, 45);
 
   // window.addEventListener for pointerDown active for when pointer is clicking.
   //shape1.element.addEventListener for when pointer moves into element
