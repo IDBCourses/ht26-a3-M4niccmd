@@ -232,6 +232,10 @@ function setup() {
   shape7.element.addEventListener("pointerenter", pointerEnter7);
   shape7.element.addEventListener("pointerleave", pointerLeave);
   window.addEventListener("pointermove", pointerMove);
+
+  window.addEventListener("pointerdown", () => {
+    Tone.start();
+  });
 }
 
 setup();
