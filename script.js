@@ -160,7 +160,7 @@ function userAverage() {
     average = total / speeds.length;
   }
 
-  let volume = -15 + average * 10;
+  let volume = -40 + average * 10;
   if (volume > 0){
     volume = 0;
   }
