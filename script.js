@@ -82,7 +82,7 @@ function update() {
 // Runs every time the pointer goes down: a click, a tap or a pen touch.
 
 //Runs the Tune.start function when pointer enters the browser.
-function startTone() {
+function pointerDown(event) {
   Tone.start();
 }
 
@@ -244,7 +244,7 @@ function setup() {
   shape7.element.addEventListener("pointerleave", pointerLeave);
   window.addEventListener("pointermove", pointerMove);
 
-  window.addEventListener("pointerdown", startTone);
+  window.addEventListener("pointerdown", pointerDown);
 }
 
 setup();
