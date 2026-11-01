@@ -2,9 +2,9 @@
 
 **Play it here:** <!-- Paste your GitHub Pages link here, e.g. https://idbcourses.github.io/your-repo-name/ -->
 
-**Name:** <!-- Your name and MAU ID -->
+**Name:** John Miguel Pikulik (AN4762)
 
-<!-- One or two sentences: what kind of instrument is it, and what is it like to play? -->
+A poor man's MIDI board with 7 round-edged squares with different notes tied to it.
 
 ## How to play
 
@@ -12,10 +12,11 @@
 
 | When you...  | The sound...                         | The shapes... |
 | ------------ | ------------------------------------ | ------------- |
-| Click or tap | Plays a C4 (the example: replace it) | Nothing yet   |
-|              |                                      |               |
+| Slide pointer slowly or quickly through a shape | Plays a note dependent on which coloured shape the pointer has entered | Change colour to show your pointer has entered it  |
+| Holding the pointer still             |    Will hold the note's volume at the same tone as it entered                                  |   Will change colour and maintain it            |
+| Pointer enters the shape quickly       | Will play loudly                         | Will change colour quickly
 
-<!-- Anything else a player needs to know: how to get started, a good thing to try first. -->
+The pointer's speed determines the volume of the note. If the pointer enters slowly, the volume will be low and if left inside the shape, the volume will remain low. If the pointer enters quickly, the volume will be loud. However, if the pointer moves quickly through a note, the note will be played loudly. It will not be loud if the pointer is held inside the shape and instead will slowly decay into low volume.
 
 ---
 
