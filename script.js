@@ -27,36 +27,37 @@ import { createShape } from "./shape.js";
 const notes = ["C", "D", "E", "F", "G", "A", "B"]; // the note played when the pointer comes across certain shapes
 // Shape1: defined as "circle", the first shape in the instrument
 const shape1 = createShape("Circle");
-shape1.setPosition(0.5, 0.67);
+shape1.setPosition(0.05, 0.05);
+shape1.setRoundedness(0.13);
 
 //A second shape element on the browser.
 const shape2 = createShape("Square");
-shape2.setPosition(0.3, 0.4);
+shape2.setPosition(0.05, 0.35);
 shape2.setRoundedness(0.13);
 
 //A third shape element on the browser.
 const shape3 = createShape("Square");
-shape3.setPosition(0.4, 0.4);
+shape3.setPosition(0.05, 0.65);
 shape3.setRoundedness(0.13);
 
 //A fourth shape element on the browser.
 const shape4 = createShape("Square");
-shape4.setPosition(0.2, 0.4);
+shape4.setPosition(0.35, 0.05);
 shape4.setRoundedness(0.13);
 
 //A fifth shape element on the browser.
 const shape5 = createShape("Square");
-shape5.setPosition(0.1, 0.5);
+shape5.setPosition(0.35, 0.35);
 shape5.setRoundedness(0.13);
 
 //A sixth shape element on the browser.
 const shape6 = createShape("Square");
-shape6.setPosition(0.15, 0.35);
+shape6.setPosition(0.35, 0.65);
 shape6.setRoundedness(0.13);
 
 //A seventh shape element on the browser.
 const shape7 = createShape("Square");
-shape7.setPosition(0.12, 0.25);
+shape7.setPosition(0.7, 0.35);
 shape7.setRoundedness(0.13);
 
 // ---------- State ----------
@@ -90,43 +91,43 @@ function startTone() {
 function pointerEnter(event) {
   within = true;
   synth.triggerAttack(notes[0] + octave);
-  shape1.setColour(80, 20, 50);
+  shape1.setColour(20, 80, 50);
 }
 
 function pointerEnter2(event){
   within = true;
   synth.triggerAttack(notes[1] + octave);
-  shape2.setColour(20, 80, 100);
+  shape2.setColour(20, 60, 35);
 }
 
 function pointerEnter3(event){
   within = true;
   synth.triggerAttack(notes[2] + octave);
-  shape3.setColour(20, 80, 100);
+  shape3.setColour(20, 40, 45);
 }
 
 function pointerEnter4(event){
   within = true;
   synth.triggerAttack(notes[3] + octave);
-  shape4.setColour(20, 80, 100);
+  shape4.setColour(120, 40, 40);
 }
 
 function pointerEnter5(event){
   within = true;
   synth.triggerAttack(notes[4] + octave);
-  shape5.setColour(20, 80, 100);
+  shape5.setColour(220, 40, 35);
 }
 
 function pointerEnter6(event){
   within = true;
   synth.triggerAttack(notes[5] + octave);
-  shape6.setColour(20, 80, 100);
+  shape6.setColour(180, 37, 57);
 }
 
 function pointerEnter7(event){
   within = true;
   synth.triggerAttack(notes[6] + octave);
-  shape7.setColour(20, 80, 100);
+  shape7.setColour(269, 44, 57);
 }
 
 //pointerLeave is a singular function as it does the same thing for every other element -- Purely my hypothesis.
@@ -134,25 +135,25 @@ function pointerLeave(event) {
   within = false;
 
   synth.triggerRelease(notes[0] + octave);
-  shape1.setColour(50, 80, 20);
+  shape1.setColour(51, 100, 55);
 
   synth.triggerRelease(notes[1] + octave);
-  shape2.setColour(80, 80, 45);
+  shape2.setColour(20, 80, 50);
 
   synth.triggerRelease(notes[2] + octave);
-  shape3.setColour(80, 80, 45);
+  shape3.setColour(360, 80, 47);
 
   synth.triggerRelease(notes[3] + octave);
   shape4.setColour(80, 80, 45);
 
   synth.triggerRelease(notes[4] + octave);
-  shape5.setColour(80, 80, 45);
+  shape5.setColour(220, 100, 50);
 
   synth.triggerRelease(notes[5] + octave);
-  shape6.setColour(80, 80, 45);
+  shape6.setColour(180, 78, 57);
 
   synth.triggerRelease(notes[6] + octave);
-  shape7.setColour(80, 80, 45);
+  shape7.setColour(269, 80, 57);
 }
 
 //pointerMove to userAverage in these functions are intended for the effect to be applied across all elements.
@@ -210,20 +211,20 @@ function userAverage() {
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
   update(); // start the update loop
-  shape1.setSize(120);
-  shape1.setColour(50, 80, 20);
-  shape2.setSize(120);
-  shape2.setColour(80, 80, 45);
-  shape3.setSize(120);
-  shape3.setColour(80, 80, 45);
-  shape4.setSize(120);
+  shape1.setSize(225);
+  shape1.setColour(51, 100, 55);
+  shape2.setSize(225);
+  shape2.setColour(20, 80, 50);
+  shape3.setSize(225);
+  shape3.setColour(360, 80, 47);
+  shape4.setSize(225);
   shape4.setColour(80, 80, 45);
-  shape5.setSize(120);
-  shape5.setColour(80, 80, 45);
-  shape6.setSize(120);
-  shape6.setColour(80, 80, 45);
-  shape7.setSize(120);
-  shape7.setColour(80, 80, 45);
+  shape5.setSize(225);
+  shape5.setColour(220, 100, 50);
+  shape6.setSize(225);
+  shape6.setColour(180, 78, 57);
+  shape7.setSize(225);
+  shape7.setColour(269, 80, 57);
 
   //shape elements were added so that each shape has a separate enter state to play individual notes.
   //addEventListener pointerdown allows for audio to play once the browser is clicked.
