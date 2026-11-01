@@ -1,7 +1,6 @@
 # My instrument
 
-**Play it here:** <!-- Paste your GitHub Pages link here, e.g. https://idbcourses.github.io/your-repo-name/ -->
-
+**Play it here:** https://idbcourses.github.io/ht26-a3-M4niccmd/
 **Name:** John Miguel Pikulik (AN4762)
 
 A poor man's MIDI board with 7 round-edged squares with different notes tied to it.
