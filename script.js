@@ -24,51 +24,227 @@
 import { createShape } from "./shape.js";
 
 // ---------- Settings ----------
-// Settings variables should contain all of the "fixed" parts of your programs
-// For example: which notes you can play, how fast things move, the tempo.
-const note = "C4"; // the note played when the pointer goes down
+const notes = ["C", "D", "E", "F", "G", "A", "B"]; // the note played when the pointer comes across certain shapes
+// Shape1: defined as "circle", the first shape in the instrument
+const shape1 = createShape("Circle");
+shape1.setPosition(0.05, 0.05);
+shape1.setRoundedness(0.13);
+
+//A second shape element on the browser.
+const shape2 = createShape("Square");
+shape2.setPosition(0.05, 0.35);
+shape2.setRoundedness(0.13);
+
+//A third shape element on the browser.
+const shape3 = createShape("Square");
+shape3.setPosition(0.05, 0.65);
+shape3.setRoundedness(0.13);
+
+//A fourth shape element on the browser.
+const shape4 = createShape("Square");
+shape4.setPosition(0.35, 0.05);
+shape4.setRoundedness(0.13);
+
+//A fifth shape element on the browser.
+const shape5 = createShape("Square");
+shape5.setPosition(0.35, 0.35);
+shape5.setRoundedness(0.13);
+
+//A sixth shape element on the browser.
+const shape6 = createShape("Square");
+shape6.setPosition(0.35, 0.65);
+shape6.setRoundedness(0.13);
+
+//A seventh shape element on the browser.
+const shape7 = createShape("Square");
+shape7.setPosition(0.7, 0.35);
+shape7.setRoundedness(0.13);
 
 // ---------- State ----------
-// State variables are the parts of your program that change over time.
-// For example: where the pointer is, how fast it's moving, or whether a drone is on.
+let octave = 4; //sets octave to 4
+let within = false; //whether the pointer is inside the element or not
+let lastX = 0;
+let lastY = 0;
+let lastTime = 0;
+let speeds = [];
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
 const synth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play several notes at once
 
 // ---------- Update ----------
-// Update the state. This is called every 100ms.
+// Update the state. This is called every 750ms.
 function update() {
-  setTimeout(update, 100); // call update() again in 100 milliseconds
-}
-
-// ---------- Use ----------
-// Use the state to make sound and move shapes. This is called every 100ms.
-function use() {
-  setTimeout(use, 100); // call use() again in 100 milliseconds
+  setTimeout(update, 750); // call update() again in 750 milliseconds
 }
 
 // ---------- Controls (Event Handlers) ----------
 // Runs every time the pointer goes down: a click, a tap or a pen touch.
-function pointerDown(event) {
-  Tone.start(); // browsers only allow sound after the player has pressed something
 
-  console.log("Pointer down at", event.clientX, event.clientY);
-  synth.triggerAttackRelease(note, "8n"); // play the note for an eighth note
+//Runs the Tune.start function when pointer enters the browser.
+function startTone() {
+  Tone.start();
 }
+
+//Every subsequent function under this comment is intended for each object to have a pointerEnter function so that they do not appear and disappear at the same time.
+//Each element has their own pointerEnter event to make notes different.
+function pointerEnter(event) {
+  within = true;
+  synth.triggerAttack(notes[0] + octave);
+  shape1.setColour(20, 80, 50);
+}
+
+function pointerEnter2(event){
+  within = true;
+  synth.triggerAttack(notes[1] + octave);
+  shape2.setColour(20, 60, 35);
+}
+
+function pointerEnter3(event){
+  within = true;
+  synth.triggerAttack(notes[2] + octave);
+  shape3.setColour(20, 40, 45);
+}
+
+function pointerEnter4(event){
+  within = true;
+  synth.triggerAttack(notes[3] + octave);
+  shape4.setColour(120, 40, 40);
+}
+
+function pointerEnter5(event){
+  within = true;
+  synth.triggerAttack(notes[4] + octave);
+  shape5.setColour(220, 40, 35);
+}
+
+function pointerEnter6(event){
+  within = true;
+  synth.triggerAttack(notes[5] + octave);
+  shape6.setColour(180, 37, 57);
+}
+
+function pointerEnter7(event){
+  within = true;
+  synth.triggerAttack(notes[6] + octave);
+  shape7.setColour(269, 44, 57);
+}
+
+//pointerLeave is a singular function as it does the same thing for every other element -- Purely my hypothesis.
+function pointerLeave(event) {
+  within = false;
+
+  synth.triggerRelease(notes[0] + octave);
+  shape1.setColour(51, 100, 55);
+
+  synth.triggerRelease(notes[1] + octave);
+  shape2.setColour(20, 80, 50);
+
+  synth.triggerRelease(notes[2] + octave);
+  shape3.setColour(360, 80, 47);
+
+  synth.triggerRelease(notes[3] + octave);
+  shape4.setColour(80, 80, 45);
+
+  synth.triggerRelease(notes[4] + octave);
+  shape5.setColour(220, 100, 50);
+
+  synth.triggerRelease(notes[5] + octave);
+  shape6.setColour(180, 78, 57);
+
+  synth.triggerRelease(notes[6] + octave);
+  shape7.setColour(269, 80, 57);
+}
+
+//pointerMove to userAverage in these functions are intended for the effect to be applied across all elements.
+//Pointer enters the element slowly will make a low tone, while quick movements make louder tones.
+function pointerMove(event){
+  if (!within){
+    return;
+  }
+
+  let normX = event.clientX / window.innerWidth;
+  let normY = event.clientY / window.innerHeight;
+  let now = Date.now();
+  let distance = Math.hypot(normX - lastX, normY - lastY);
+  let seconds = (now - lastTime) / 1000;
+
+  if (seconds === 0){
+    return;
+  }
+
+  let speed = distance / seconds;
+  lastX = normX;
+  lastY = normY;
+  lastTime = now;
+
+  speeds.push(speed);
+  setTimeout(decayOldest, 750);
+  userAverage();
+}
+
+function decayOldest() {
+  speeds.shift();
+  userAverage();
+}
+
+function userAverage() {
+  let total = 0;
+  for (let i = 0; i < speeds.length; i++){
+    total = total + speeds[i];
+  }
+
+  let average = 0;
+  if (speeds.length > 0){
+    average = total / speeds.length;
+  }
+
+  let volume = -40 + average * 10;
+  if (volume > 0){
+    volume = 0;
+  }
+  synth.volume.value = volume;
+}
+
 
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
   update(); // start the update loop
-  use(); // start the use loop
+  shape1.setSize(225);
+  shape1.setColour(51, 100, 55);
+  shape2.setSize(225);
+  shape2.setColour(20, 80, 50);
+  shape3.setSize(225);
+  shape3.setColour(360, 80, 47);
+  shape4.setSize(225);
+  shape4.setColour(80, 80, 45);
+  shape5.setSize(225);
+  shape5.setColour(220, 100, 50);
+  shape6.setSize(225);
+  shape6.setColour(180, 78, 57);
+  shape7.setSize(225);
+  shape7.setColour(269, 80, 57);
 
-  // Example: a shape near the middle of the window. Replace it with your own.
-  const example = createShape("example");
-  example.setPosition(0.5, 0.5);
+  //shape elements were added so that each shape has a separate enter state to play individual notes.
+  //addEventListener pointerdown allows for audio to play once the browser is clicked.
+  shape1.element.addEventListener("pointerenter", pointerEnter);
+  shape1.element.addEventListener("pointerleave", pointerLeave);
+  shape2.element.addEventListener("pointerenter", pointerEnter2);
+  shape2.element.addEventListener("pointerleave", pointerLeave);
+  shape3.element.addEventListener("pointerenter", pointerEnter3);
+  shape3.element.addEventListener("pointerleave", pointerLeave);
+  shape4.element.addEventListener("pointerenter", pointerEnter4);
+  shape4.element.addEventListener("pointerleave", pointerLeave);
+  shape5.element.addEventListener("pointerenter", pointerEnter5);
+  shape5.element.addEventListener("pointerleave", pointerLeave);
+  shape6.element.addEventListener("pointerenter", pointerEnter6);
+  shape6.element.addEventListener("pointerleave", pointerLeave);
+  shape7.element.addEventListener("pointerenter", pointerEnter7);
+  shape7.element.addEventListener("pointerleave", pointerLeave);
+  window.addEventListener("pointermove", pointerMove);
 
-  // Put your event listener code here
-  window.addEventListener("pointerdown", pointerDown);
+  window.addEventListener("pointerdown", startTone);
 }
 
-setup(); // Always remember to call setup()!
+setup();
